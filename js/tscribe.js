@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 const stepSize = 5
 
 const audioFile = document.getElementById('input-file');
+const labelFile = document.getElementById('label-file');
 const audio = document.getElementById('audio');
 const playbackSpeed = document.getElementById('range-playback-speed');
 const autoRewind = document.getElementById('input-rewind');
@@ -28,6 +29,7 @@ const autoRewind = document.getElementById('input-rewind');
 audioFile.addEventListener('change', function (event) {
     const audioFile = event.target.files[0];
     const audioSrc = URL.createObjectURL(audioFile);
+    labelFile.innerHTML = `current file: ${audioFile.name}`;
     audio.setAttribute('src', audioSrc);
 });
 
@@ -157,12 +159,15 @@ deleteSnapshot.addEventListener('click', function (event) {
 
 // export transcript to txt file
 exportTranscript.addEventListener('click', function (event) {
-    var transcriptText = transcript.value;
-    var textBlob = new Blob([transcriptText], { type: 'text/plain' });
-
+    const transcriptText = transcript.value;
+    const textBlob = new Blob([transcriptText], { type: 'text/plain' });
+    var fileName = 'transcript.txt';
+    if(audioFile.files[0]) {
+        fileName = audioFile.files[0].name + '.txt'
+    };
     //create dummy link to download blob
     var downloadLink = document.createElement("a");
-    downloadLink.download = "transcript.txt";
+    downloadLink.download = fileName;
     downloadLink.innerHTML = "download file";
     downloadLink.href = window.URL.createObjectURL(textBlob);
     downloadLink.style.display = "none";

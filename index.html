@@ -13,7 +13,9 @@
     <div class="container">
 
         <div class="left">
-            <h3 class="setting-label">settings</h3>
+            <div class="setting">
+                <h3>tscribe 1.0</h3>
+            </div>
             <label class="setting-label">playback speed</label>
             <input id="range-playback-speed" class="setting" type="range" name="playback-speed" min="-2" max="2"
                 value="0">
@@ -40,7 +42,7 @@
             </div>
 
             <div class="shortcuts">
-                <b>Keyboard audio control:</b><br>
+                <b>keyboard audio control:</b><br>
                 ctrl+space: start/pause<br>
                 F8: forward<br>
                 F7: rewind<br>
@@ -49,11 +51,17 @@
         </div>
 
         <div class="main">
-            <input id="input-file" class="page-element form-element" type="file" name="file" />
-            <audio id="audio" class="page-element" controls></audio>
+            <div class="group">
+                <audio id="audio" class="page-element" controls></audio>
+                <label class="button" for="input-file">
+                    select file to transcribe
+                    <input id="input-file" type="file" name="file" />
+                </label>
+            </div>
+            <label id="label-file" class="form-label" for="text-transcript">  </label>
             <textarea id="text-transcript" class="form-element" name="transcript" cols="90" rows="30"></textarea>
             <div class="section">
-                <button id="btn-export" class="button" type="button">export to file</button>
+                <button id="btn-export" class="button" type="button">download as txt</button>
                 <button id="btn-clear" class="button" type="button">clear transcript</button>
             </div>
         </div>
