@@ -89,9 +89,10 @@ const autoSwitch = document.getElementById('cb-auto-switch');
 let speaker = respondent;
 
 // create timestamp
-// TODO: add milliseconds (format: hh:mm:ss-x)
 const timeStamp = function (time) {
-    hms = new Date(time * 1000).toISOString().substr(11, 8);
+    console.log(new Date(time * 1000).toISOString());
+    hms = new Date(time * 1000).toISOString().substr(11, 10);
+    hms = hms.replace('\.', '\-');
     const stamp = ` #${hms}#`
     return stamp;
 }
@@ -116,13 +117,14 @@ transcript.addEventListener('keydown', function (event) {
 
 
 //
-// DATA STORAGE AND EXPORT
+// DATA STORAGE, EXPORT AND CLEARANCE
 //
 
 const autoSave = document.getElementById('cb-auto-save');
 const restoreSnapshot = document.getElementById('btn-restore-snapshot');
 const deleteSnapshot = document.getElementById('btn-delete-snapshot');
 const exportTranscript = document.getElementById('btn-export');
+const clearTranscript = document.getElementById('btn-clear');
 
 // create snapshot in local browser storage (triggered on line break)
 const createSnapshot = function () {
@@ -168,3 +170,11 @@ exportTranscript.addEventListener('click', function (event) {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 });
+
+// clear transcript
+clearTranscript.addEventListener('click', function (event) {
+    confirmClear = confirm('Clear transcript?');
+    if(confirmClear) {
+        transcript.value = ''
+    }
+})
