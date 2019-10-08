@@ -1,2 +1,2 @@
 # tscribe
-Tool to facilitate transcription of interview audio files
+Tool to facilitate transcription of qualitative interviews
