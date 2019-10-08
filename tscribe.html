@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>t-scribe</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="left">
+            <h3 class="setting-label">settings</h3>
+            <label class="setting-label">playback speed</label>
+            <input class="setting" type="range" name="speed" id="speed" min="-2" max="2" value="0">
+
+            <label class="setting-label" for="rewind">auto rewind</label>
+            <input id="auto-rewind" class="setting form-element" name="rewind" type="number" maxlength="4" size="4"
+                value="5">
+
+            <label for="interviewer" class="setting-label">interviewer name</label>
+            <input type="text" id="interviewer" class="setting form-element" name="interviewer">
+
+            <label for="respondent" class="setting-label">respondent name</label>
+            <input type="text" id="respondent" class="setting form-element" name="respondent">
+
+            <label for="auto-switch" class=setting-label>auto switch</label>
+            <input type="checkbox" name="auto-switch" id="auto-switch" checked>
+
+            <label for="auto-save" class=setting-label>auto snapshots</label>
+            <input type="checkbox" name="auto-save" id="auto-save" checked>
+
+            <label for="restore" class="setting-label">snapshot</label>
+            <div>
+                <button id="restore" class="button setting" type="button" disabled>restore</button>
+                <button id="delete" class="button setting" type="button" disabled>delete</button>
+            </div>
+        </div>
+
+        <div class="main">
+            <input class="page-element form-element" type="file" id="file" name="file" />
+            <audio id="audio" class="page-element" controls></audio>
+            <textarea class="form-element" name="transcript" id="transcript" cols="90" rows="30"></textarea>
+            <div class="section">
+                <button id="export" class="button" type="button">export to file</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="./js/tscribe.js"></script>
+</body>
+
+</html>
