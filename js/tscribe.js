@@ -22,7 +22,7 @@ const stepSize = 5
 const audioFile = document.getElementById('input-file');
 const audio = document.getElementById('audio');
 const playbackSpeed = document.getElementById('range-playback-speed');
-const autoRewind = document.getElementById('auto-rewind');
+const autoRewind = document.getElementById('input-rewind');
 
 // add source to audio if file is selected
 audioFile.addEventListener('change', function (event) {
@@ -39,42 +39,41 @@ playbackSpeed.addEventListener('change', function (event) {
 
 // monitor keyboard events for audio playback
 document.addEventListener('keydown', function (event) {
-    // add 37 (backword) and 39 (forward)
-    switch (event.keyCode) {
-        case 32:
-            if (event.ctrlKey) {
-                if (audio.paused) {
-                    startPlayback();
-                } else {
-                    stopPlayback(autoRewind.value);
-                }
-                event.preventDefault();
-                event.stopPropagation();
-                break;
-            };
-        case 115:
-            stopPlayback(autoRewind.value);
-            event.preventDefault();
-            event.stopPropagation();
-            break;
-        case 119:
-            backward(step);
-            event.preventDefault();
-            event.stopPropagation();
-            break;
-        case 120:
-            startPlayback();
-            event.preventDefault();
-            event.stopPropagation();
-            break;
-        case 118:
-            forward(step);
-            event.preventDefault();
-            event.stopPropagation();
-            break;
+    // keyCodes: 115 (F4), 118 (F7), 119 (F8), 120 (F9), 32 (space)
+    const cmdPlay = event.keyCode === 120;
+    const cmdPause = event.keyCode === 115;
+    const cmdPlayPause = event.ctrlKey && event.keyCode === 32;
+    const cmdForward = event.keyCode === 119;
+    const cmdBackward = event.keyCode === 118;
+
+    if (cmdPlay) {
+        event.preventDefault();
+        event.stopPropagation();
+        audio.play();
+    } else if (cmdPause) {
+        event.preventDefault();
+        event.stopPropagation();
+        audio.pause();
+        audio.currentTime -= autoRewind.value
+    } else if (cmdPlayPause) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (audio.paused) {
+            audio.play()
+        } else {
+            audio.pause();
+            audio.currentTime -= autoRewind.value;
+        }
+    } else if (cmdForward) {
+        event.preventDefault();
+        event.stopPropagation();
+        audio.currentTime += stepSize
+    } else if (cmdBackward) {
+        event.preventDefault();
+        event.stopPropagation();
+        audio.currentTime -= stepSize
     }
 });
-
 
 
 //
