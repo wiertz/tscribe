@@ -43,9 +43,12 @@ div.main {
     flex-flow: column nowrap;
 }
 
-div.storage {
-    grid-area: storage;
-    background-color: #8183cd;
+div.shortcuts {
+    padding: 1rem;
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+    grid-column: span 2;
 }
 
 .setting-label {
