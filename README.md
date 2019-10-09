@@ -10,7 +10,7 @@ _tscribe_ is a simple web application that facilitates the transcription of audi
 * Save as txt file for import in MaxQDA
 
 ## Motivation
-Transcribing interviews from audio recordings is a central task of qualitative research. This tool is an alternative to proprietary transcription software such as F4transkript and outdated free transcription software such as EasyTranscript. It is developed and maintained by researchers and meant to facilitate transcription in university research and student projects.
+Transcribing interviews from audio recordings is a central task in qualitative research projects. This tool is an alternative to proprietary transcription software such as F4transkript and outdated free transcription tools such as EasyTranscript. It is developed and maintained by researchers and meant to facilitate transcription in university research and student projects.
 
 ## Installation
 _tscribe_ consists of pure vanilla html/css/js without further dependencies. It can be hosted on any webserver serving static content (e.g. apache or nginx). Since _tscribe_ does not include processing on the server side, it can be installed and used locally and offline. For local use simply download repository as zip, extract, and open index.html.
