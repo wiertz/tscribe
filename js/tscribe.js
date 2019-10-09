@@ -24,6 +24,20 @@ const labelFile = document.getElementById('label-file');
 const audio = document.getElementById('audio');
 const playbackSpeed = document.getElementById('range-playback-speed');
 const autoRewind = document.getElementById('input-rewind');
+const mousePlay = document.getElementById('cb-mouse-play');
+
+document.addEventListener('contextmenu', function(event) {
+    if(mousePlay.checked) {
+        event.preventDefault();
+        event.stopPropagation();
+        if(audio.paused){
+            audio.play();
+        } else {
+            audio.pause();
+            audio.currentTime -= autoRewind.value;
+        }
+    }
+})
 
 // add source to audio if file is selected
 audioFile.addEventListener('change', function (event) {
@@ -41,22 +55,16 @@ playbackSpeed.addEventListener('change', function (event) {
 
 // monitor keyboard events for audio playback
 document.addEventListener('keydown', function (event) {
-    // keyCodes: 115 (F4), 118 (F7), 119 (F8), 120 (F9), 32 (space)
+    // keyCodes: 114 (F3), 115 (F4), 116 (F5), 118 (F7), 119 (F8), 120 (F9), 32 (space)
     const cmdPlay = event.keyCode === 120;
-    const cmdPause = event.keyCode === 115;
-    const cmdPlayPause = event.ctrlKey && event.keyCode === 32;
-    const cmdForward = event.keyCode === 119;
-    const cmdBackward = event.keyCode === 118;
+    const cmdPlayPause = (event.ctrlKey && event.keyCode === 32) || event.keyCode === 115;
+    const cmdForward = event.keyCode === 118 || event.keyCode === 116;
+    const cmdBackward = event.keyCode === 119 || event.keyCode === 114;
 
     if (cmdPlay) {
         event.preventDefault();
         event.stopPropagation();
         audio.play();
-    } else if (cmdPause) {
-        event.preventDefault();
-        event.stopPropagation();
-        audio.pause();
-        audio.currentTime -= autoRewind.value
     } else if (cmdPlayPause) {
         event.preventDefault();
         event.stopPropagation();

@@ -23,6 +23,9 @@
             <label class="setting-label" for="rewind">auto rewind</label>
             <input id="input-rewind" class="setting form-element" name="rewind" type="number" value="5">
 
+            <label class="setting-label" for="mouse-play">right click play/pause</label>
+            <input id="cb-mouse-play" class="setting form-element" name="mouse-play" type="checkbox">
+
             <label class="setting-label">interviewer name</label>
             <input id="input-interviewer" class="setting form-element" type="text" name="interviewer" value="I">
 
@@ -44,8 +47,9 @@
             <div class="shortcuts">
                 <b>keyboard control:</b><br>
                 ctrl+space: start/pause<br>
-                F8: forward<br>
-                F7: rewind<br>
+                F4: start/pause<br>
+                F3: rewind<br>
+                F5: forward<br>
                 <br>
                 <b>switch speaker:</b><br>
                 enter: timestamp & switch<br>
@@ -54,15 +58,15 @@
         </div>
 
         <div class="main">
-            <div class="group">
+            <label class="button" for="input-file">
+                select file to transcribe
+                <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
+            </label>
+            <div class="audio-container">
                 <audio id="audio" class="page-element" controls></audio>
-                <label class="button" for="input-file">
-                    select file to transcribe
-                    <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc"/>
-                </label>
             </div>
-            <label id="label-file" class="form-label" for="text-transcript">  </label>
-            <textarea id="text-transcript" class="form-element" name="transcript" cols="90" rows="30"></textarea>
+            <label id="label-file" class="form-label" for="text-transcript"> </label>
+            <textarea id="text-transcript" class="form-element" name="transcript" rows="30"></textarea>
             <div class="section">
                 <button id="btn-export" class="button" type="button">download as txt</button>
                 <button id="btn-clear" class="button" type="button">clear transcript</button>

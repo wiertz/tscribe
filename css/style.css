@@ -114,6 +114,7 @@ input[type="file"] {
 textarea {
     font-size: 1rem;
     font-family: inherit;
+    width: 100%
 }
 
 .button {
@@ -145,4 +146,12 @@ textarea {
 
 .page-element {
     margin: 1rem 1rem 1rem 0;
+}
+
+audio {
+    width: 100%;
+}
+
+.audio-container {
+    align-self: stretch;
 }
