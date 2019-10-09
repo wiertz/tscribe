@@ -7,7 +7,7 @@ _tscribe_ is a simple web application that facilitates the transcription of audi
 * Adjust playback speed
 * Auto rewind on stop
 * Auto insert timestamp and interviewer/respondent names
-* Save as txt file for import in MaxQDA
+* Save txt file for import in MaxQDA
 
 ## Motivation
 Transcribing interviews from audio recordings is a central task in qualitative research projects. This tool is an alternative to proprietary transcription software such as F4transkript and outdated free transcription tools such as EasyTranscript. It is developed and maintained by researchers and meant to facilitate transcription in university research and student projects.
