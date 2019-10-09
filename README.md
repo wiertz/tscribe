@@ -2,7 +2,7 @@
 Tool to facilitate transcription of qualitative interviews.
 
 ## Description
-_tscribe_ is a simple web application that facilitates the transcription of audio-recorded interviews. It can be used via It can be used via https://human.geographie.uni-freiburg.de/tscribe/ or hosted on any other web server. Current features include:
+_tscribe_ is a simple web application that facilitates the transcription of audio-recorded interviews. It can be used via https://human.geographie.uni-freiburg.de/tscribe/ or hosted on any other web server. Current features include:
 * Compatibility with foot pedals for audio playback control
 * Adjust playback speed
 * Auto rewind on stop
