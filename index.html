@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tscribe</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/tscribe/favicon.ico">
 </head>
 
 <body>
@@ -14,13 +15,13 @@
 
         <div class="main">
             <div class="section">
-            <label class="button" for="input-file">
-                select audio file
-                <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
-            </label>
-            <button id="btn-export" class="button" type="button">download transcript</button>
-            <button id="btn-clear" class="button" type="button">clear transcript</button>
-        </div>
+                <label class="button" for="input-file">
+                    select audio file
+                    <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
+                </label>
+                <button id="btn-export" class="button" type="button">download transcript</button>
+                <button id="btn-clear" class="button" type="button">clear transcript</button>
+            </div>
             <label id="label-file" class="form-label" for="text-transcript"></label>
             <textarea id="text-transcript" class="form-element" name="transcript" rows="30"></textarea>
             <div class="audio-container">
