@@ -21,6 +21,7 @@ div.container {
     grid-template-columns: 350px 1fr;
     grid-template-areas: 
         "settings main"
+        "info main";
 }
 
 div.left {
@@ -30,14 +31,37 @@ div.left {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 0.5rem;
-    grid-row-gap: 2rem;
+    grid-row-gap: 1rem;
     align-items: center;
     grid-auto-rows: min-content;
     color: #fff;
+    font-size: 0.9rem;
+}
+
+div.info {
+    grid-area: info;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    padding: 1rem;
+    background-color: #444;
+    font-size: 0.9rem;
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+}
+
+div.info a, div.info a:visited {
+    color: #aaa;
+}
+
+div.info-section {
+    margin-top: 1rem;
 }
 
 div.main {
     grid-area: main;
+    
     padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
@@ -49,14 +73,6 @@ div.group {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-}
-
-div.shortcuts {
-    padding: 1rem;
-    color: #aaa;
-    font-size: 0.9rem;
-    line-height: 1.4rem;
-    grid-column: span 2;
 }
 
 .setting-label {
@@ -115,16 +131,17 @@ textarea {
     font-size: 1rem;
     font-family: inherit;
     width: 100%;
+    overflow-y: scroll;
+    resize: vertical;
 }
 
 .button {
     height: 2rem;
     line-height: 1.8rem;
     text-align: center;
-    
     border: 1px solid #8183cd;
     background-color: #8183cd;
-    margin: 1px;
+    margin: 2px;
     color: #fff;
     padding: 0 0.5rem;
     font-size: 1rem;

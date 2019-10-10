@@ -5,12 +5,21 @@
 // enable restore/delete snapshot buttons if local storage exists
 var speaker;
 
+initTranscript = function(override = false) {
+    if(transcript.value.length < 5 || override) {
+        speaker = interviewer;
+        speakerString = `${speaker.value}: `;
+        transcript.value = speakerString + '\n\n\n\n\n\n\n\n\n\n\n\n';
+        transcript.focus();
+        transcript.setSelectionRange(speakerString.length, speakerString.length);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function (event) {
     if (localStorage.tscribe) {
         restoreSnapshot.disabled = false;
         deleteSnapshot.disabled = false;
     }
-    speaker = interviewer;
 })
 
 
@@ -45,12 +54,9 @@ document.addEventListener('contextmenu', function(event) {
 audioFile.addEventListener('change', function (event) {
     const audioFile = event.target.files[0];
     const audioSrc = URL.createObjectURL(audioFile);
-    labelFile.innerHTML = `current file: ${audioFile.name}`;
+    labelFile.innerHTML = `now transcribing: ${audioFile.name}`;
     audio.setAttribute('src', audioSrc);
-    if(transcript.value === '') {
-        transcript.value = `${speaker.value}: `;
-    };
-    transcript.focus();
+    initTranscript();
 });
 
 // change playback speed
@@ -100,10 +106,10 @@ const transcript = document.getElementById('text-transcript');
 const interviewer = document.getElementById('input-interviewer');
 const respondent = document.getElementById('input-respondent');
 const autoSwitch = document.getElementById('cb-auto-switch');
+const autoTimeStamp = document.getElementById('cb-auto-timestamp');
 
 // create timestamp
 const timeStamp = function (time) {
-    console.log(new Date(time * 1000).toISOString());
     hms = new Date(time * 1000).toISOString().substr(11, 10);
     hms = hms.replace('\.', '\-');
     const stamp = ` #${hms}#`
@@ -112,18 +118,34 @@ const timeStamp = function (time) {
 
 // monitor keyboard events in transcript window
 transcript.addEventListener('keydown', function (event) {
-    if (event.keyCode === 13 && !event.shiftKey) {
+    if (event.keyCode === 13 && !event.shiftKey && transcript.selectionStart === transcript.selectionEnd) {
         event.preventDefault();
 
-        
-        text = transcript.value + timeStamp(audio.currentTime) + '\n';
+        // get cursor position
+        let cursorPosition = transcript.selectionEnd;
+        let insertText = '';
+
+        // generate text to insert (timestamp and speaker)
+        insertText = autoTimeStamp.checked ? timeStamp(audio.currentTime) + '\n' : '\n';
         if (autoSwitch.checked) {
-            if (!event.altKey) {
+            if(!event.altKey) {
+                //switch speaker
                 speaker = (speaker === interviewer) ? respondent : interviewer;
-            };
-            text += speaker.value + ': ';
-        };
-        transcript.value = text;
+            }
+            insertText += speaker.value + ': '
+        }
+        
+        // insert text
+        currentText = transcript.value;
+        newText = currentText.substring(0, cursorPosition) + insertText + currentText.substring(cursorPosition);
+        transcript.value = newText;
+        
+        // position cursor
+        let newCursorPosition = cursorPosition + insertText.length;
+        transcript.selectionStart = newCursorPosition;
+        transcript.selectionEnd = newCursorPosition;
+
+        // create snapshot
         if (autoSave.checked) createSnapshot();
     }
 })
@@ -150,8 +172,9 @@ const createSnapshot = function () {
 // restore snapshot from local browser storage
 restoreSnapshot.addEventListener('click', function (event) {
     snapshot = localStorage.tscribe;
-    snapshotEnd = snapshot.substr(snapshot.length - 40, snapshot.length);
-    const message = `Found a snapshot ending with the following content: \n... ${snapshotEnd} Restoring the snapshot will delete current transcript. Continue?`;
+    snapshot = snapshot.replace(/\n\n+/, '')
+    snapshotEnd = snapshot.substr(snapshot.length - 100, snapshot.length);
+    const message = `Found a snapshot ending with the following content: \n... ${snapshotEnd}\n Restoring the snapshot will delete current transcript. Continue?`;
     const confirmRestore = confirm(message);
     if (confirmRestore) {
         transcript.value = localStorage.tscribe
@@ -192,8 +215,6 @@ exportTranscript.addEventListener('click', function (event) {
 clearTranscript.addEventListener('click', function (event) {
     confirmClear = confirm('Clear transcript?');
     if(confirmClear) {
-        speaker = interviewer;
-        transcript.value = `${interviewer.value}: `;
-        transcript.focus;
+        initTranscript(true);
     }
 })
