@@ -114,6 +114,8 @@ const timeStamp = function (time) {
 transcript.addEventListener('keydown', function (event) {
     if (event.keyCode === 13 && !event.shiftKey) {
         event.preventDefault();
+
+        
         text = transcript.value + timeStamp(audio.currentTime) + '\n';
         if (autoSwitch.checked) {
             if (!event.altKey) {
@@ -190,6 +192,8 @@ exportTranscript.addEventListener('click', function (event) {
 clearTranscript.addEventListener('click', function (event) {
     confirmClear = confirm('Clear transcript?');
     if(confirmClear) {
-        transcript.value = ''
+        speaker = interviewer;
+        transcript.value = `${interviewer.value}: `;
+        transcript.focus;
     }
 })
