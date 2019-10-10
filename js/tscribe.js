@@ -3,11 +3,14 @@
 //
 
 // enable restore/delete snapshot buttons if local storage exists
+var speaker;
+
 document.addEventListener('DOMContentLoaded', function (event) {
     if (localStorage.tscribe) {
         restoreSnapshot.disabled = false;
         deleteSnapshot.disabled = false;
     }
+    speaker = interviewer;
 })
 
 
@@ -29,7 +32,6 @@ const mousePlay = document.getElementById('cb-mouse-play');
 document.addEventListener('contextmenu', function(event) {
     if(mousePlay.checked) {
         event.preventDefault();
-        event.stopPropagation();
         if(audio.paused){
             audio.play();
         } else {
@@ -45,6 +47,10 @@ audioFile.addEventListener('change', function (event) {
     const audioSrc = URL.createObjectURL(audioFile);
     labelFile.innerHTML = `current file: ${audioFile.name}`;
     audio.setAttribute('src', audioSrc);
+    if(transcript.value === '') {
+        transcript.value = `${speaker.value}: `;
+    };
+    transcript.focus();
 });
 
 // change playback speed
@@ -94,9 +100,6 @@ const transcript = document.getElementById('text-transcript');
 const interviewer = document.getElementById('input-interviewer');
 const respondent = document.getElementById('input-respondent');
 const autoSwitch = document.getElementById('cb-auto-switch');
-
-// init current speaker value
-let speaker = respondent;
 
 // create timestamp
 const timeStamp = function (time) {
