@@ -109,12 +109,11 @@ const timeStamp = function (time) {
 
 // monitor keyboard events in transcript window
 transcript.addEventListener('keydown', function (event) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && !event.shiftKey) {
         event.preventDefault();
-        event.stopPropagation();
         text = transcript.value + timeStamp(audio.currentTime) + '\n';
         if (autoSwitch.checked) {
-            if (!event.shiftKey) {
+            if (!event.altKey) {
                 speaker = (speaker === interviewer) ? respondent : interviewer;
             };
             text += speaker.value + ': ';
