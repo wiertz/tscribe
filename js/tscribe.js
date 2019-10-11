@@ -194,7 +194,7 @@ deleteSnapshot.addEventListener('click', function (event) {
 
 // export transcript to txt file
 exportTranscript.addEventListener('click', function (event) {
-    const transcriptText = transcript.value.replace(/\n\n+/, '\n');
+    const transcriptText = transcript.value.replace(/\n\n\n+/, '\n\n');
     const textBlob = new Blob([transcriptText], { type: 'text/plain' });
     var fileName = 'transcript.txt';
     if(audioFile.files[0]) {
