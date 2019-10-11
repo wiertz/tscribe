@@ -172,7 +172,7 @@ const createSnapshot = function () {
 // restore snapshot from local browser storage
 restoreSnapshot.addEventListener('click', function (event) {
     snapshot = localStorage.tscribe;
-    snapshot = snapshot.replace(/\n\n+/, '')
+    snapshot = snapshot.replace(/\n\n\n+/, '\n\n');
     snapshotEnd = snapshot.substr(snapshot.length - 100, snapshot.length);
     const message = `Found a snapshot ending with the following content: \n... ${snapshotEnd}\n Restoring the snapshot will delete current transcript. Continue?`;
     const confirmRestore = confirm(message);
@@ -194,7 +194,7 @@ deleteSnapshot.addEventListener('click', function (event) {
 
 // export transcript to txt file
 exportTranscript.addEventListener('click', function (event) {
-    const transcriptText = transcript.value;
+    const transcriptText = transcript.value.replace(/\n\n+/, '\n');
     const textBlob = new Blob([transcriptText], { type: 'text/plain' });
     var fileName = 'transcript.txt';
     if(audioFile.files[0]) {
