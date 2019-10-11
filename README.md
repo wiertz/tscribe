@@ -1,4 +1,4 @@
-# tscribe
+# t.scribe
 Tool to facilitate transcription of qualitative interviews.
 
 ## Description
