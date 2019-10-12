@@ -1,3 +1,5 @@
+
+
 //
 // INITIALIZE
 //
@@ -9,7 +11,7 @@ initTranscript = function(override = false) {
     if(transcript.value.length < 5 || override) {
         speaker = interviewer;
         speakerString = `${speaker.value}: `;
-        transcript.value = speakerString + '\n\n\n\n\n\n\n\n\n\n\n\n';
+        transcript.value = speakerString + '\n'.repeat(30);
         transcript.focus();
         transcript.setSelectionRange(speakerString.length, speakerString.length);
     }

@@ -15,8 +15,8 @@ body {
 }
 
 div.container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template-columns: 350px 1fr;
     grid-template-areas: 
@@ -60,11 +60,15 @@ div.info-section {
 
 div.main {
     grid-area: main;
-    
-    padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-start;
+    align-items: stretch;
+}
+
+div.transcript-functions {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    flex-flow: row;
 }
 
 div.group {
@@ -72,6 +76,17 @@ div.group {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+}
+
+.logo {
+    grid-column: 2;
+    justify-self: left;
+    width: 70px;
+    height: 70px;
+}
+
+.logo path {
+    fill: #fff;
 }
 
 .setting-label {
@@ -127,16 +142,26 @@ input[type="file"] {
 }
 
 textarea {
-    font-size: 1rem;
+    flex: 1 1 auto;
+    justify-self: stretch;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    line-height: 1.3rem;
+    margin: 0.5rem 1.5rem;
+    padding: 1.5rem;
+    font-size: 0.95rem;
     font-family: inherit;
-    width: 100%;
     overflow-y: scroll;
     resize: vertical;
 }
 
+button, input, textarea {
+    outline: none;
+}
+
 .button {
     height: 2rem;
-    line-height: 1.8rem;
     text-align: center;
     border: 1px solid #8183cd;
     background-color: #8183cd;
@@ -144,7 +169,12 @@ textarea {
     color: #fff;
     padding: 0 0.5rem;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 3px;
+}
+
+label.button {
+    display: flex;
+    align-items: center;
 }
 
 .button:hover {
@@ -169,5 +199,9 @@ audio {
 }
 
 .audio-container {
-    align-self: stretch;
+    padding: 0.5rem 1.5rem;
+    flex-shrink: 0;
+    justify-self: flex-end;
+    position: sticky;
+    bottom: 0px;
 }
