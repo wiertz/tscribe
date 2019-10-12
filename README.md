@@ -2,7 +2,7 @@
 Tool to facilitate transcription of qualitative interviews.
 
 ## Description
-_tscribe_ is a simple web application that facilitates the transcription of audio-recorded interviews. It can be used via https://human.geographie.uni-freiburg.de/tscribe/ or hosted on any other web server. Current features include:
+_t.scribe_ is a simple web application that facilitates the transcription of audio-recorded interviews. It can be used via https://human.geographie.uni-freiburg.de/tscribe/ or hosted on any other web server. Current features include:
 * Compatibility with foot switches for audio playback control
 * Adjust playback speed
 * Auto rewind on stop
@@ -13,10 +13,10 @@ _tscribe_ is a simple web application that facilitates the transcription of audi
 Transcribing interviews from audio recordings is a central task in qualitative research projects. This tool is an alternative to proprietary transcription software such as F4transkript and outdated free transcription tools such as EasyTranscript. It is developed and maintained without commercial interests by researchers and meant to facilitate transcription in university research and student projects.
 
 ## Installation
-_tscribe_ consists of pure html/css/js code. It can be hosted on any webserver serving static content. Since _tscribe_ does not include processing on the server side, it can be installed and used offline. Simply download repository as zip, extract, and open index.html.
+_t.scribe_ consists of pure html/css/js code. It can be hosted on any webserver serving static content. Since _t.scribe_ does not include processing on the server side, it can be installed and used offline. To use _t.scribe_ offline, download the latest version from https://github.com/wiertz/tscribe/archive/master.zip. Unpack the zip-file in a folder on your computer and open tscribe/index.html. 
 
 ## Data protection
-_tscribe_ does not send audio material or transcription text over the web. No information is stored on the server running _tscribe_. Audio files are played from the local harddisk and transcripts are processed locally in the browser. Unencrypted snapshots of the transcript are stored in the local browser cache. You can delete this data by clearing your browser cache or deleting the snapshot via the interface. If you still have security concerns or are working on very sensitive material, download the latest release (https://github.com/wiertz/tscribe/releases). Disable your internet connection, unpack the downloaded zip-file in a folder on your computer and open tscribe/index.html.
+_t.scribe_ does not send audio material or transcription text over the web. No information is stored on the server running _t.scribe_. Audio files are played from the local harddisk and transcripts are processed locally in the browser. Unencrypted snapshots of the transcript are stored in the local browser cache to prevent loss of data on accidentally closing the browser window or reloading the page. You can delete local snapshots by clearing your browser cache or deleting the snapshot via the interface. If you have security concerns using t.scribe online or are working on very sensitive material, download _t.scribe_ for offline use (see above). Disable your internet connection, start _t.scribe_ from your local hard drive and clear your browser cache once you are finished.
 
 ## Issues and contribution
 Please report issues or suggest improvements via https://github.com/wiertz/tscribe/. Contributions/pull requests are very welcome!
