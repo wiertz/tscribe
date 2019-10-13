@@ -66,10 +66,31 @@ div.main {
 }
 
 div.transcript-functions {
-    padding: 0.5rem 1.5rem;
+    margin-top:0.5rem;
+    padding: 0rem 1.5rem;
     display: flex;
     flex-flow: row;
 }
+
+div.error-message {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1.5rem;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 3rem;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 350px;
+    opacity: 0.9;
+    background-color: #e88c03;
+    color: #fff;
+}
+
 
 div.group {
     display: flex;
@@ -161,26 +182,44 @@ button, input, textarea {
 }
 
 .button {
+    flex: 0 0 auto;
     height: 2rem;
     text-align: center;
     border: 1px solid #8183cd;
     background-color: #8183cd;
-    margin: 2px;
+    margin: 0 2px;
     color: #fff;
     padding: 0 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border-radius: 3px;
 }
 
-label.button {
-    display: flex;
-    align-items: center;
+.btn-important {
+    background-color: #4bbf03;
+    border-color: #4bbf03;
 }
 
 .button:hover {
     background-color: #fff;
     color: #8183cd;
     cursor: pointer;
+}
+
+.btn-important:hover {
+    background-color: white;
+    border-color: white;
+    color: #4bbf03;
+}
+
+#label-file {
+    flex: 0 0 auto;
+    color: #3b9802;
+    margin-left: auto;
+}
+
+label.button {
+    display: flex;
+    align-items: center;
 }
 
 .button:disabled {
@@ -204,4 +243,8 @@ audio {
     justify-self: flex-end;
     position: sticky;
     bottom: 0px;
+}
+
+.hidden {
+    display: none;
 }

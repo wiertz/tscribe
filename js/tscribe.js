@@ -7,8 +7,8 @@
 // enable restore/delete snapshot buttons if local storage exists
 var speaker;
 
-initTranscript = function(override = false) {
-    if(transcript.value.length < 5 || override) {
+initTranscript = function (override = false) {
+    if (transcript.value.length < 5 || override) {
         speaker = interviewer;
         speakerString = `${speaker.value}: `;
         transcript.value = speakerString + '\n'.repeat(30);
@@ -25,6 +25,23 @@ document.addEventListener('DOMContentLoaded', function (event) {
 })
 
 
+//
+// ERROR MESSAGES
+//
+const errorDiv = document.querySelector('div.error');
+const errorMsg = document.querySelector('div.error-message');
+const transcriptFunctions = document.querySelector('div.transcript-functions');
+
+showError = function (msg) {
+    errorMsg.textContent = msg;
+    errorDiv.classList.toggle('hidden');
+    setTimeout(function () {
+        errorDiv.classList.toggle('hidden');
+        transcriptFunctions.classList.toggle('hidden');
+        errorMsg.textContent = '';
+    }, 4000)
+}
+
 
 //
 // AUDIO CONTROL
@@ -40,10 +57,10 @@ const playbackSpeed = document.getElementById('range-playback-speed');
 const autoRewind = document.getElementById('input-rewind');
 const mousePlay = document.getElementById('cb-mouse-play');
 
-document.addEventListener('contextmenu', function(event) {
-    if(mousePlay.checked) {
+document.addEventListener('contextmenu', function (event) {
+    if (mousePlay.checked) {
         event.preventDefault();
-        if(audio.paused){
+        if (audio.paused) {
             audio.play();
         } else {
             audio.pause();
@@ -56,9 +73,13 @@ document.addEventListener('contextmenu', function(event) {
 audioFile.addEventListener('change', function (event) {
     const audioFile = event.target.files[0];
     const audioSrc = URL.createObjectURL(audioFile);
-    labelFile.innerHTML = `now transcribing: ${audioFile.name}`;
     audio.setAttribute('src', audioSrc);
+    labelFile.innerText = audioFile.name;
     initTranscript();
+});
+
+audio.addEventListener('error', (err) => {
+    showError("error loading audio file");
 });
 
 // change playback speed
@@ -130,18 +151,18 @@ transcript.addEventListener('keydown', function (event) {
         // generate text to insert (timestamp and speaker)
         insertText = autoTimeStamp.checked ? timeStamp(audio.currentTime) + '\n' : '\n';
         if (autoSwitch.checked) {
-            if(!event.altKey) {
+            if (!event.altKey) {
                 //switch speaker
                 speaker = (speaker === interviewer) ? respondent : interviewer;
             }
             insertText += speaker.value + ': '
         }
-        
+
         // insert text
         currentText = transcript.value;
         newText = currentText.substring(0, cursorPosition) + insertText + currentText.substring(cursorPosition);
         transcript.value = newText;
-        
+
         // position cursor
         let newCursorPosition = cursorPosition + insertText.length;
         transcript.selectionStart = newCursorPosition;
@@ -199,7 +220,7 @@ exportTranscript.addEventListener('click', function (event) {
     const transcriptText = transcript.value.replace(/\n\n\n+/, '\n\n');
     const textBlob = new Blob([transcriptText], { type: 'text/plain' });
     var fileName = 'transcript.txt';
-    if(audioFile.files[0]) {
+    if (audioFile.files[0]) {
         fileName = audioFile.files[0].name + '.txt'
     };
     //create dummy link to download blob
@@ -216,7 +237,7 @@ exportTranscript.addEventListener('click', function (event) {
 // clear transcript
 clearTranscript.addEventListener('click', function (event) {
     confirmClear = confirm('Clear transcript?');
-    if(confirmClear) {
+    if (confirmClear) {
         initTranscript(true);
     }
 })

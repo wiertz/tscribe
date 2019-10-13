@@ -24,9 +24,13 @@
     <div class="container">
 
         <div class="main">
+            <div class="error hidden">
+                <div class="error-message"></div>
+            </div>
+
             <div class="transcript-functions">
-                <button id="btn-export" class="button" type="button">download transcript</button>
-                <button id="btn-clear" class="button" type="button">clear transcript</button>
+                <button id="btn-export" class="button btn-transcript" type="button">download transcript</button>
+                <button id="btn-clear" class="button btn-transcript" type="button">clear transcript</button>
                 <label id="label-file" class="form-label" for="text-transcript"></label>
             </div>
 
@@ -62,7 +66,7 @@
             </svg>
 
             <label class="setting-label">audio file</label>
-            <label class="setting button" for="input-file">
+            <label class="setting button btn-important" for="input-file">
                 <span>select audio file</span>
                 <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
             </label>
@@ -115,7 +119,7 @@
                 shift+enter: timestamp (no speaker)
             </div>
             <div class="info-section">
-                <a href="https://github.com/wiertz/tscribe" target="_blank">t.scribe v 1.01</a> by Thilo Wiertz
+                <a href="https://github.com/wiertz/tscribe" target="_blank">t.scribe v 1.02</a> by Thilo Wiertz
             </div>
         </div>
 
