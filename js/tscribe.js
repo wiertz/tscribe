@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     if (localStorage.tscribe) {
         restoreSnapshot.disabled = false;
         deleteSnapshot.disabled = false;
-    }
-})
+    };
+});
 
 
 //
@@ -75,11 +75,14 @@ audioFile.addEventListener('change', function (event) {
     const audioSrc = URL.createObjectURL(audioFile);
     audio.setAttribute('src', audioSrc);
     labelFile.innerText = audioFile.name;
-    initTranscript();
+    setTimeout(() => {
+        console.log(audio.src);
+    }, 500)
 });
 
 audio.addEventListener('error', (err) => {
-    showError("error loading audio file");
+    showError("error: could not load audio file");
+    labelFile.innerText = '';
 });
 
 // change playback speed
