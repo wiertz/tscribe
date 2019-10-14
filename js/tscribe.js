@@ -75,9 +75,6 @@ audioFile.addEventListener('change', function (event) {
     const audioSrc = URL.createObjectURL(audioFile);
     audio.setAttribute('src', audioSrc);
     labelFile.innerText = audioFile.name;
-    setTimeout(() => {
-        console.log(audio.src);
-    }, 500)
 });
 
 audio.addEventListener('error', (err) => {

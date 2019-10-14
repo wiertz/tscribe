@@ -82,6 +82,7 @@ div.transcript-functions {
     flex: 0 0 auto;
     color: #3b9802;
     margin-left: auto;
+    align-self: center;
 }
 
 textarea {
