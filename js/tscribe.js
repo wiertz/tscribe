@@ -18,7 +18,7 @@ initTranscript = function (override = false) {
 }
 
 document.addEventListener('DOMContentLoaded', function (event) {
-    if (localStorage.tscribe) {
+    if(hasStorage && localStorage.tscribe) {
         restoreSnapshot.disabled = false;
         deleteSnapshot.disabled = false;
     };
@@ -125,7 +125,7 @@ document.addEventListener('keydown', function (event) {
 // TRANSCRIPTION
 //
 
-const transcript = document.getElementById('text-transcript');
+const transcript = document.querySelector('textarea.text-transcript');
 const interviewer = document.getElementById('input-interviewer');
 const respondent = document.getElementById('input-respondent');
 const autoSwitch = document.getElementById('cb-auto-switch');
@@ -169,7 +169,7 @@ transcript.addEventListener('keydown', function (event) {
         transcript.selectionEnd = newCursorPosition;
 
         // create snapshot
-        if (autoSave.checked) createSnapshot();
+        if (hasStorage && autoSave.checked) createSnapshot();
     }
 })
 
@@ -241,3 +241,20 @@ clearTranscript.addEventListener('click', function (event) {
         initTranscript(true);
     }
 })
+
+
+
+//
+// HELPER FUNCTIONS
+//
+
+// check if localStorage is available
+var hasStorage = () => {
+	try {
+		localStorage.setItem(mod, mod);
+		localStorage.removeItem(mod);
+		return true;
+	} catch (exception) {
+		return false;
+	}
+};

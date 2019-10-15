@@ -6,7 +6,12 @@
     display: none;
 }
 
-
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 
 /* 
    Main container
@@ -85,7 +90,7 @@ div.transcript-functions {
     align-self: center;
 }
 
-textarea {
+.text-transcript {
     flex: 1 1 auto;
     justify-self: stretch;
     background-color: #eee;
