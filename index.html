@@ -29,14 +29,54 @@
             </div>
 
             <div class="transcript-functions">
-                <button id="btn-export" class="button btn-transcript" type="button">download transcript</button>
-                <button id="btn-clear" class="button btn-transcript" type="button">clear transcript</button>
-                <label id="label-file" for="text-transcript"></label>
+                <label id="container-audio-file" for="input-audio-file">
+                    <svg id="svg-audio-file" class="svg-transcript-function" viewBox="0 0 1000 1000" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                        style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                        <path
+                            d="M647.411,143.124c0,0 147.48,139.319 151.974,376.252c5.386,283.968 -151.974,395.437 -151.974,395.437"
+                            style="fill:none;stroke-width:85px;" />
+                        <path
+                            d="M511.489,238.994c0,0 110.836,104.703 114.214,282.766c4.047,213.41 -114.214,297.183 -114.214,297.183"
+                            style="fill:none;stroke-width:85px;" />
+                        <path
+                            d="M370,321.562c0,0 79.276,74.89 81.692,202.25c2.895,152.644 -81.692,212.563 -81.692,212.563"
+                            style="fill:none;stroke-width:85px;" />
+                        <circle cx="238.193" cy="528.969" r="86.064" />
+
+                    </svg>
+                    <input id="input-audio-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
+                    <span id="audio-filename">load audio file</span>
+                </label>
+                <svg id="svg-export" class="svg-transcript-function" viewBox="0 0 1000 1000" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                    xmlns:serif="http://www.serif.com/"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                    <g>
+                        <g>
+                            <rect x="413.476" y="121.852" width="171.185" height="347.544" />
+                            <path d="M499.068,707.497l-239.781,-279.303l479.562,0l-239.781,279.303Z" />
+                        </g>
+                        <path d="M845.23,878.148l0,-107.286l-690.46,0l0,107.286l690.46,0Z" />
+                    </g>
+                </svg>
+                <svg id="svg-clear" class="svg-transcript-function" viewBox="0 0 1000 1000" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                    xmlns:serif="http://www.serif.com/"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                    <rect x="169.379" y="351.494" width="100" height="563.319" />
+                    <rect x="543.54" y="351.494" width="100" height="563.319" />
+                    <rect x="730.621" y="351.494" width="100" height="563.319" />
+                    <rect x="356.46" y="351.494" width="100" height="563.319" />
+                    <path d="M521.099,155.015l-8.552,-48.5l-98.481,17.365l8.552,48.5l98.481,-17.365Z" />
+                    <path d="M169.379,814.813l0,100l661.242,0l0,-100l-661.242,0Z" />
+                    <path d="M169.379,351.494l0,100l661.242,0l0,-100l-661.242,0Z" />
+                    <path d="M830.621,191.454l-17.365,-98.48l-708.711,124.965l17.364,98.48l708.712,-124.965Z" />
+                </svg>
             </div>
 
-            <!-- <div class="text-transcript div-background"></div> -->
             <textarea class="text-transcript" name="transcript" spellcheck="false"></textarea>
-
 
             <div class="audio-container">
                 <audio id="audio" controls></audio>
@@ -65,12 +105,6 @@
                -463 2 0 495 0 495 -354 0 c-329 0 -355 -1 -359 -17z" />
                 </g>
             </svg>
-
-            <label class="setting-label">audio file</label>
-            <label class="setting button btn-important" for="input-file">
-                <span>select audio file</span>
-                <input id="input-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
-            </label>
 
             <label class="setting-label">playback speed</label>
 

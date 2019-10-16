@@ -50,12 +50,12 @@ showError = function (msg) {
 // stepsize for audio control (backward/forward) in seconds
 const stepSize = 5
 
-const audioFile = document.getElementById('input-file');
-const labelFile = document.getElementById('label-file');
+const audioFile = document.getElementById('input-audio-file');
 const audio = document.getElementById('audio');
 const playbackSpeed = document.getElementById('range-playback-speed');
 const autoRewind = document.getElementById('input-rewind');
 const mousePlay = document.getElementById('cb-mouse-play');
+const audioFilename = document.getElementById('audio-filename');
 
 document.addEventListener('contextmenu', function (event) {
     if (mousePlay.checked) {
@@ -74,7 +74,8 @@ audioFile.addEventListener('change', function (event) {
     const audioFile = event.target.files[0];
     const audioSrc = URL.createObjectURL(audioFile);
     audio.setAttribute('src', audioSrc);
-    labelFile.innerText = audioFile.name;
+    fileNameToShow = audioFile.name.length <= 30 ? audioFile.name : audioFile.name.substr(0, 27) + "...";
+    audioFilename.textContent = fileNameToShow;
 });
 
 audio.addEventListener('error', (err) => {
@@ -182,8 +183,8 @@ transcript.addEventListener('keydown', function (event) {
 const autoSave = document.getElementById('cb-auto-save');
 const restoreSnapshot = document.getElementById('btn-restore-snapshot');
 const deleteSnapshot = document.getElementById('btn-delete-snapshot');
-const exportTranscript = document.getElementById('btn-export');
-const clearTranscript = document.getElementById('btn-clear');
+const exportTranscript = document.getElementById('svg-export');
+const clearTranscript = document.getElementById('svg-clear');
 
 // create snapshot in local browser storage (triggered on line break)
 const createSnapshot = function () {
