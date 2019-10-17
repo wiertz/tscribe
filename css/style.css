@@ -146,7 +146,7 @@ div.transcript-functions {
     flex-flow: row nowrap;
     align-items: center;
     padding-right: 1rem;
-    color: #8183cd;
+    color: #6565d6;
 }
 
 #container-audio-file:hover {
@@ -158,8 +158,8 @@ div.transcript-functions {
 }
 
 .svg-transcript-function path, .svg-transcript-function rect, .svg-transcript-function circle {
-    fill: #8183cd;
-    stroke: #8183cd;
+    fill: #6565d6;
+    stroke: #6565d6;
     stroke-width: 25px;
 }
 
@@ -299,8 +299,8 @@ input[type="file"] {
     height: 2rem;
     min-width: 3rem;
     text-align: center;
-    border: 1px solid #8183cd;
-    background-color: #8183cd;
+    border: 1px solid #6565d6;
+    background-color: #6565d6;
     margin: 0 2px;
     color: #fff;
     padding: 0 0.5rem;
@@ -310,7 +310,7 @@ input[type="file"] {
 
 .button:hover {
     background-color: #fff;
-    color: #8183cd;
+    color: #6565d6;
     cursor: pointer;
 }
 
