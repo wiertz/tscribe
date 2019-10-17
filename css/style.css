@@ -34,6 +34,48 @@ div.container {
     grid-template-areas: "settings main" "info main";
 }
 
+/*
+  Overlay
+*/
+
+#overlay {
+    border-radius: 5px;
+    position: fixed;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    bottom: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    color: #eee;
+    padding: 2rem;
+}
+
+#overlay-title {
+    font-size: larger;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+}
+
+#overlay-text {
+    margin-bottom: 1rem;
+}
+
+.overlay-code {
+    font-family: monospace;
+    font-size: 1rem;
+    margin: 1rem 0.5rem;
+}
+
+#overlay-options {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row;
+}
+
 /* 
    Info area (bottom left)
 */
@@ -75,7 +117,7 @@ div.transcript-functions {
     display: flex;
     flex-flow: row nowrap;
     min-width: 600px;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-end;
 }
 
@@ -98,7 +140,6 @@ div.transcript-functions {
 }
 
 #container-audio-file {
-    margin-right: auto;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     display: flex;
@@ -142,6 +183,7 @@ div.transcript-functions {
     font-family: inherit;
     overflow-y: scroll;
     resize: vertical;
+    scrollbar-color: #444 #eee;
 }
 
 div.error-message {
@@ -227,6 +269,10 @@ div.left {
     padding: 0.5rem;
 }
 
+.setting-text {
+    color: #999;
+}
+
 input[type="number"] {
     width: 4rem;
 }
@@ -251,6 +297,7 @@ input[type="file"] {
 .button {
     flex: 0 0 auto;
     height: 2rem;
+    min-width: 3rem;
     text-align: center;
     border: 1px solid #8183cd;
     background-color: #8183cd;
@@ -278,4 +325,3 @@ label.button {
     border: 1px solid #777;
     background-color: #999;
 }
-

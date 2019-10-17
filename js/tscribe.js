@@ -1,10 +1,7 @@
-
-
 //
 // INITIALIZE
 //
 
-// enable restore/delete snapshot buttons if local storage exists
 var speaker;
 
 initTranscript = function (override = false) {
@@ -17,10 +14,15 @@ initTranscript = function (override = false) {
     }
 }
 
+// enable restore/delete snapshot buttons if local storage exists
 document.addEventListener('DOMContentLoaded', function (event) {
-    if(hasStorage && localStorage.tscribe) {
+    if (hasStorage && localStorage.tscribe) {
         restoreSnapshot.disabled = false;
         deleteSnapshot.disabled = false;
+    } else if (!hasStorage) {
+        restoreSnapshot.classList.add('hidden');
+        deleteSnapshot.classList.add('hidden');
+        restoreSnapshot.parentNode.innerText = '(no support by browser)'
     };
 });
 
@@ -74,7 +76,7 @@ audioFile.addEventListener('change', function (event) {
     const audioFile = event.target.files[0];
     const audioSrc = URL.createObjectURL(audioFile);
     audio.setAttribute('src', audioSrc);
-    fileNameToShow = audioFile.name.length <= 30 ? audioFile.name : audioFile.name.substr(0, 27) + "...";
+    fileNameToShow = audioFile.name.length <= 50 ? audioFile.name : audioFile.name.substr(0, 47) + "...";
     audioFilename.textContent = fileNameToShow;
 });
 
@@ -195,25 +197,24 @@ const createSnapshot = function () {
 
 // restore snapshot from local browser storage
 restoreSnapshot.addEventListener('click', function (event) {
-    snapshot = localStorage.tscribe;
-    snapshot = snapshot.replace(/\n\n\n+/, '\n\n');
-    snapshotEnd = snapshot.substr(snapshot.length - 100, snapshot.length);
-    const message = `Found a snapshot ending with the following content: \n... ${snapshotEnd}\n Restoring the snapshot will delete current transcript. Continue?`;
-    const confirmRestore = confirm(message);
-    if (confirmRestore) {
-        transcript.value = localStorage.tscribe
-    }
+    let snapshot = localStorage.tscribe;
+    snapshot = snapshot.replace(/\n+/g, "<br>")
+    const message = `Found a previous session with the following content: <div class="overlay-code" style="overflow-y:scroll; height:10rem">... ${snapshot}</div> Restoring the session will delete current transcript. Continue?`;
+    showMessage('Restore previous session', message, ['yes', 'no'], (response) => {
+        if (response == 'yes') transcript.value = localStorage.tscribe
+    });
 });
 
 // delete snapshot from local browser storage
 deleteSnapshot.addEventListener('click', function (event) {
-    message = 'Are you sure you want to delete all local snapshots?';
-    confirmDelete = confirm(message);
-    if (confirmDelete) {
-        localStorage.removeItem('tscribe');
-        restoreSnapshot.disabled = true;
-        deleteSnapshot.disabled = true;
-    }
+    message = 'Are you sure you want to delete all local session data?';
+    showMessage('Delete local session data', message, ['yes', 'no'], response => {
+        if (response == 'yes') {
+            localStorage.removeItem('tscribe');
+            restoreSnapshot.disabled = true;
+            deleteSnapshot.disabled = true;
+        }
+    });
 });
 
 // export transcript to txt file
@@ -237,11 +238,56 @@ exportTranscript.addEventListener('click', function (event) {
 
 // clear transcript
 clearTranscript.addEventListener('click', function (event) {
-    confirmClear = confirm('Clear transcript?');
-    if (confirmClear) {
-        initTranscript(true);
-    }
+    showMessage('Clear transcript', 'Are you sure you want to clear the current transcript?', ['yes', 'no'], (response) => {
+        if (response === 'yes') initTranscript(true);
+    });
+    // confirmClear = confirm('Clear transcript?');
+    // if (confirmClear) {
+    //     initTranscript(true);
+    // }
 })
+
+
+
+//
+// MESSAGES
+//
+
+// overlay = document.getElementById('overlay');
+// overlayTitle = document.getElementById('overlay-title');
+// overlayText = document.getElementById('overlay-text');
+// overlayOptions = document.getElementById('overlay-options');
+
+const showMessage = function (title, text, options, callback) {
+    overlay = document.createElement('div');
+    overlayTitle = document.createElement('div');
+    overlayText = document.createElement('div');
+    overlayOptions = document.createElement('div');
+    overlay.appendChild(overlayTitle);
+    overlay.appendChild(overlayText);
+    overlay.appendChild(overlayOptions);
+    
+    overlay.id = 'overlay';
+    overlayTitle.id = 'overlay-title';
+    overlayText.id = 'overlay-text';
+    overlayOptions.id = 'overlay-options';
+
+    overlayTitle.textContent = title;
+    overlayText.innerHTML = text;
+    options.forEach(option => {
+        var btn = document.createElement('button');
+        btn.className = 'button';
+        btn.textContent = option;
+        overlayOptions.appendChild(btn);
+        btn.addEventListener('click', (event) => {
+            callback(option);
+            overlay.remove();
+        });
+    });
+    document.body.appendChild(overlay);
+};
+
+
 
 
 
@@ -251,11 +297,13 @@ clearTranscript.addEventListener('click', function (event) {
 
 // check if localStorage is available
 var hasStorage = () => {
-	try {
-		localStorage.setItem(mod, mod);
-		localStorage.removeItem(mod);
-		return true;
-	} catch (exception) {
-		return false;
-	}
+    try {
+        localStorage.setItem(mod, mod);
+        localStorage.removeItem(mod);
+        console.log('storage test successful')
+        return true;
+    } catch (exception) {
+        return false;
+    }
 };
+
