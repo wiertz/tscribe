@@ -35,21 +35,27 @@
                         xml:space="preserve" xmlns:serif="http://www.serif.com/"
                         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
                         <g transform="matrix(0.678601,0,0,0.621167,435.079,187.582)">
-                            <path d="M169.379,143.124C169.379,143.124 316.859,282.443 321.353,519.376C326.739,803.344 169.379,914.813 169.379,914.813" style="fill:none;stroke-width:138.35px;"/>
+                            <path
+                                d="M169.379,143.124C169.379,143.124 316.859,282.443 321.353,519.376C326.739,803.344 169.379,914.813 169.379,914.813"
+                                style="fill:none;stroke-width:138.35px;" />
                         </g>
                         <g transform="matrix(0.374852,0,0,0.343126,391.781,334.657)">
-                            <path d="M169.379,143.124C169.379,143.124 316.859,282.443 321.353,519.376C326.739,803.344 169.379,914.813 169.379,914.813" style="fill:none;stroke-width:250.46px;"/>
+                            <path
+                                d="M169.379,143.124C169.379,143.124 316.859,282.443 321.353,519.376C326.739,803.344 169.379,914.813 169.379,914.813"
+                                style="fill:none;stroke-width:250.46px;" />
                         </g>
                         <g transform="matrix(1.16116,0,0,1.16116,37.613,-78.5041)">
-                            <circle cx="265.938" cy="512.127" r="63.433"/>
+                            <circle cx="265.938" cy="512.127" r="63.433" />
                         </g>
                         <g transform="matrix(0.82347,0,0,0.918524,75.7038,24.0428)">
-                            <path d="M689.99,59.932L916.751,274.213L916.751,976.421L113.757,976.421L113.757,59.932L689.99,59.932Z" style="fill:none;stroke-width:103.18px;"/>
+                            <path
+                                d="M689.99,59.932L916.751,274.213L916.751,976.421L113.757,976.421L113.757,59.932L689.99,59.932Z"
+                                style="fill:none;stroke-width:103.18px;" />
                         </g>
 
                     </svg>
                     <input id="input-audio-file" type="file" name="file" accept=".wav,.mp3,.mp4,.m4a,.ogg,.flac,.acc" />
-                    <span id="audio-filename">...select audio file</span>
+                    <span id="audio-filename">...open audio file</span>
                 </label>
                 <svg id="svg-export" class="svg-transcript-function" viewBox="0 0 1000 1000" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
@@ -107,7 +113,6 @@
                -463 2 0 495 0 495 -354 0 c-329 0 -355 -1 -359 -17z" />
                 </g>
             </svg>
-
             <label class="setting-label">playback speed</label>
 
             <input id="range-playback-speed" class="setting" type="range" name="playback-speed" min="-2" max="2"
@@ -142,6 +147,10 @@
         </div>
 
         <div class="info">
+            <div class="info-section">
+                <b>data protection:</b><br>
+                All your data stays local (<a href="https://github.com/wiertz/tscribe/blob/master/README.md" target="_blank">read more</a>)!
+            </div>
             <div class="info-section">
                 <b>audio control:</b><br>
                 ctrl+space: start/pause<br>

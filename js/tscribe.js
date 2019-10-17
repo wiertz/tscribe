@@ -259,6 +259,7 @@ clearTranscript.addEventListener('click', function (event) {
 // overlayOptions = document.getElementById('overlay-options');
 
 const showMessage = function (title, text, options, callback) {
+    dim = document.createElement('div');
     overlay = document.createElement('div');
     overlayTitle = document.createElement('div');
     overlayText = document.createElement('div');
@@ -267,6 +268,7 @@ const showMessage = function (title, text, options, callback) {
     overlay.appendChild(overlayText);
     overlay.appendChild(overlayOptions);
     
+    dim.id = 'dim';
     overlay.id = 'overlay';
     overlayTitle.id = 'overlay-title';
     overlayText.id = 'overlay-text';
@@ -282,8 +284,10 @@ const showMessage = function (title, text, options, callback) {
         btn.addEventListener('click', (event) => {
             callback(option);
             overlay.remove();
+            dim.remove();
         });
     });
+    document.body.appendChild(dim);
     document.body.appendChild(overlay);
 };
 
