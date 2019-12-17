@@ -63,10 +63,10 @@ document.addEventListener('contextmenu', function (event) {
     if (mousePlay.checked) {
         event.preventDefault();
         if (audio.paused) {
+            audio.currentTime -= autoRewind.value;
             audio.play();
         } else {
             audio.pause();
-            audio.currentTime -= autoRewind.value;
         }
     }
 })
