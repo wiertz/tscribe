@@ -87,7 +87,7 @@ audio.addEventListener('error', (err) => {
 
 // change playback speed
 playbackSpeed.addEventListener('change', function (event) {
-    newSpeed = 1 + (event.target.value * 0.25);
+    newSpeed = 1 + (event.target.value * 0.1);
     audio.playbackRate = newSpeed
 });
 
