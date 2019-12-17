@@ -107,10 +107,10 @@ document.addEventListener('keydown', function (event) {
         event.preventDefault();
         event.stopPropagation();
         if (audio.paused) {
+            audio.currentTime -= autoRewind.value;
             audio.play()
         } else {
             audio.pause();
-            audio.currentTime -= autoRewind.value;
         }
     } else if (cmdForward) {
         event.preventDefault();
